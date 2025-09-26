@@ -1,0 +1,42 @@
+paths:
+  source_file: "C:/Users/nathan.goncalves/Desktop/ListaManifestacoes.xlsx"
+  source_sheet: "ListaManifestacoes"
+  # Deixe comentado para autodetectar. Se quiser forçar manualmente, use UMA das linhas abaixo:
+  # source_header_row: 3
+  # source_header_rows: [2, 3]   # quando o arquivo tiver duas linhas de cabeçalho (blocos + nomes)
+  master_file: "C:/Users/nathan.goncalves/Desktop/Banco de Dados - 2025.xlsx"
+  master_sheet: "Manifestações"
+  out_dir: "C:/Users/nathan.goncalves/Desktop/etl_out"
+
+mapping:
+  "Situação": "Situação"
+  "NUP": "NUP"
+  "Tipo": "Tipo"
+  "Registrado Por": "Registrado Por"
+  "Assunto": "Assunto"
+  "Subassunto": "Subassunto"
+  "Tag": "Tag"
+  "Órgão Destinatário": "Setor"
+  "Canal de Entrada": "Canal de Entrada"
+  "Data de Abertura": "Data de Abertura"
+  "Prazo de Resposta": "Prazo de Resposta"
+  "Qtde. Total de Encaminhamento(s) por outro Órgão": "Qtde. Total de Encaminhamento(s) por outro Órgão"
+  "Órgão de Interesse": "Órgão de Interesse"
+  "Uf do Local do Fato": "Uf do Local do Fato"
+  "Município do Local do Fato": "Município do Local do Fato"
+  "Situação Pedido Consent.": "Situação Pedido Consent."
+  # Estes 3 abaixo precisam bater com o NOME EXATO das colunas no seu MASTER (destino):
+  "Respondente": "Respondente\n"
+  "Data Resp. Concl.": "Data  Resp. Concl."
+  "Área Responsável Resp. Concl.": "Área Responsável Resp. Concl."
+
+options:
+  unique_key: "NUP"
+  date_cols:
+    - "Data de Abertura"
+    - "Prazo de Resposta"
+    - "Data  Resp. Concl."
+  output_date_format: "%Y-%m-%d"
+  upsert_on_conflict: true
+  write_change_sets: true 
+  append_only: true
